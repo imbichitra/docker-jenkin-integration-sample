@@ -41,7 +41,7 @@ pipeline {
         stage('Docker deploy'){
             steps {
                
-                bat 'docker run -itd -p  8081:9090 bichitra1994/docker_jenkins_springboot'
+                bat 'docker run -itd -p  8081:8080 bichitra1994/docker_jenkins_springboot'
             }
         }
 
