@@ -19,7 +19,7 @@ pipeline {
         stage('Build Docker image'){
             steps {
               
-                bat 'docker build -t  bichitra1994/docker_jenkins_springboot:${BUILD_NUMBER} .'
+                bat 'docker build -t  bichitra1994/docker_jenkins_springboot'
             }
         }
 
@@ -34,14 +34,14 @@ pipeline {
 
         stage('Docker Push'){
             steps {
-                bat 'docker push bichitra1994/docker_jenkins_springboot:${BUILD_NUMBER}'
+                bat 'docker push bichitra1994/docker_jenkins_springboot'
             }
         }
         
         stage('Docker deploy'){
             steps {
                
-                bat 'docker run -itd -p  8081:9090 bichitra1994/docker_jenkins_springboot:${BUILD_NUMBER}'
+                bat 'docker run -itd -p  8081:9090 bichitra1994/docker_jenkins_springboot'
             }
         }
 
