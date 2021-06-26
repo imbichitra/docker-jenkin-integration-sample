@@ -34,7 +34,7 @@ pipeline {
 
         stage('Docker Push'){
             steps {
-                bat 'docker push bichitra1994/docker_jenkins_springboot'
+                bat 'docker push bichitra1994/docker_jenkins_springboot .'
             }
         }
         
