@@ -4,14 +4,14 @@ pipeline {
         stage('Compile and Clean') { 
             steps {
 
-                bat "mvn clean compile"
+                sh "mvn clean compile"
             }
         }
        
 
         stage('deploy') { 
             steps {
-                bat "mvn package"
+                sh "mvn package"
             }
         }
 
@@ -19,7 +19,7 @@ pipeline {
         stage('Build Docker image'){
             steps {
               
-                bat 'docker build -t  bichitra1994/docker_jenkins_springboot .'
+                sh 'docker build -t  bichitra1994/docker_jenkins_springboot .'
             }
         }
 
@@ -27,21 +27,21 @@ pipeline {
             
             steps {
                  withCredentials([string(credentialsId: 'DockerId', variable: 'Dockerpwd')]) {
-                    bat "docker login -u bichitra1994 -p ${Dockerpwd}"
+                    sh "docker login -u bichitra1994 -p ${Dockerpwd}"
                 }
             }                
         }
 
         stage('Docker Push'){
             steps {
-                bat 'docker push bichitra1994/docker_jenkins_springboot'
+                sh 'docker push bichitra1994/docker_jenkins_springboot'
             }
         }
         
         stage('Docker deploy'){
             steps {
                
-                bat 'docker run -itd -p  8081:8080 bichitra1994/docker_jenkins_springboot'
+                sh 'docker run -itd -p  8081:8080 bichitra1994/docker_jenkins_springboot'
             }
         }
 
